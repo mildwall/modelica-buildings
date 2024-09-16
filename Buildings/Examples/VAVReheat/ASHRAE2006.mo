@@ -4,7 +4,6 @@ model ASHRAE2006
   extends Modelica.Icons.Example;
   extends Buildings.Examples.VAVReheat.BaseClasses.PartialOpenLoop(
    redeclare replaceable Buildings.Examples.VAVReheat.BaseClasses.Floor flo(
-      final lat=lat,
       final sampleModel=sampleModel),
     amb(nPorts=3));
 
@@ -234,10 +233,10 @@ equation
           {800,74},{140,74},{140,-6.8},{158,-6.8}}, color={0,0,127}));
   connect(eas.y_actual, pSetDuc.u[3]) annotation (Line(points={{972,40},{980,40},
           {980,74},{140,74},{140,-6},{158,-6}}, color={0,0,127}));
-  connect(nor.y_actual, pSetDuc.u[4]) annotation (Line(points={{1132,40},{1140,
-          40},{1140,74},{140,74},{140,-5.2},{158,-5.2}}, color={0,0,127}));
-  connect(wes.y_actual, pSetDuc.u[5]) annotation (Line(points={{1332,40},{1338,
-          40},{1338,74},{140,74},{140,-4.4},{158,-4.4}}, color={0,0,127}));
+  connect(nor.y_actual, pSetDuc.u[4]) annotation (Line(points={{1132,40},{1140,40},
+          {1140,74},{140,74},{140,-5.2},{158,-5.2}},     color={0,0,127}));
+  connect(wes.y_actual, pSetDuc.u[5]) annotation (Line(points={{1332,40},{1338,40},
+          {1338,74},{140,74},{140,-4.4},{158,-4.4}},     color={0,0,127}));
   connect(TSup.T, conTSup.TSup) annotation (Line(
       points={{340,-29},{340,-20},{360,-20},{360,-280},{16,-280},{16,-214},{28,
           -214}},
@@ -367,6 +366,23 @@ ASHRAE, Atlanta, GA, 2006.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 16, 2021, by Michael Wetter:<br/>
+Removed assignment of parameter <code>lat</code> as this is now obtained from the weather data reader.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1477\">IBPSA, #1477</a>.
+</li>
+<li>
+September 3, 2021, by Michael Wetter:<br/>
+Updated documentation.<br/>
+This is for <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/2600\">issue #2600</a>.
+</li>
+<li>
+August 24, 2021, by Michael Wetter:<br/>
+Changed model to include the hydraulic configurations of the cooling coil,
+heating coil and VAV terminal box.<br/>
+This is for <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/2594\">issue #2594</a>.
+</li>
 <li>
 May 6, 2021, by David Blum:<br/>
 Change to <code>from_dp=false</code> for exhaust air damper.<br/>
